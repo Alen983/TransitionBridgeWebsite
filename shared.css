@@ -87,3 +87,98 @@ html { background: #e9dfcf; }
   .no-vt body { animation: none; }
   .no-vt.leaving body { transition: none; opacity: 1; }
 }
+
+
+/* ======================================================================
+   Smart-animate: shared elements that travel between pages
+   ====================================================================== */
+.dot, .hero .badge { view-transition-name: brand-dot; }   /* red circle: Home badge <-> logo dot */
+.vertical { view-transition-name: brand-text; }            /* vertical wordmark */
+
+::view-transition-group(human),
+::view-transition-group(brand-dot),
+::view-transition-group(brand-text) {
+  animation-duration: .8s;
+  animation-timing-function: cubic-bezier(.65, 0, .25, 1);
+}
+::view-transition-group(links) {
+  animation-duration: .5s;
+  animation-timing-function: cubic-bezier(.65, 0, .25, 1);
+}
+/* shared elements cross-dissolve gently while they travel */
+::view-transition-old(human), ::view-transition-new(human),
+::view-transition-old(brand-dot), ::view-transition-new(brand-dot) {
+  animation-duration: .8s;
+}
+
+/* ======================================================================
+   Micro-interactions
+   ====================================================================== */
+:root { --ease-out: cubic-bezier(.16, 1, .3, 1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Staggered reveal — JS tags elements with .rv and adds .in when they scroll into view */
+.js .rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .9s var(--ease-out), transform 1s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 80ms + .12s);
+}
+.js .rv.in { opacity: 1; transform: none; }
+
+/* Links column: gentle nudge on hover */
+.links a { transition: color .25s ease, transform .35s var(--ease-out); }
+.links a:hover { transform: translateX(-3px); }
+
+/* Underline that draws itself on hover */
+.text-link {
+  border-bottom: 0; padding-bottom: 3px;
+  background:
+    linear-gradient(var(--red, #c8342b), var(--red, #c8342b)) 0 100% / 0 1px no-repeat,
+    linear-gradient(#111, #111) 0 100% / 100% 1px no-repeat;
+  transition: background-size .5s var(--ease-out), color .25s ease;
+}
+.text-link:hover { background-size: 100% 1px, 100% 1px; color: var(--red, #c8342b); }
+
+/* Pressed states feel physical */
+.more { transition: background .25s ease, color .25s ease, transform .3s var(--ease-out); }
+.more:active { transform: scale(.97); }
+.card:active { transform: translateY(-2px) scale(.99); }
+.back:active .back-icon { transform: translateX(-5px) scale(.94); }
+.step:active, .close:active, .vd-close:active { transform: scale(.9); }
+.step, .close, .vd-close { transition: background .25s ease, color .25s ease, transform .3s var(--ease-out); }
+
+/* Lists respond to the pointer */
+.numbered span { display: inline-block; transition: transform .35s var(--ease-out); }
+.numbered li:hover span { transform: translateX(4px); }
+.dots li::before, .steps li::before { transition: transform .35s var(--ease-out); }
+.dots li:hover::before, .steps li:hover::before { transform: scale(1.5); }
+.actions dt { transition: transform .4s var(--ease-out); }
+.actions > div:hover dt { transform: translateX(6px); }
+.card .open i { transition: background .25s ease, color .25s ease, transform .35s var(--ease-out); }
+.card:hover .open i { transform: rotate(90deg); }
+
+/* Play button breathes so the demo feels alive */
+@media (prefers-reduced-motion: no-preference) {
+  .play::after {
+    content: ""; position: absolute; inset: -6px; border-radius: 50%;
+    border: 1px solid #c8342b; opacity: 0;
+    animation: pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(.85); opacity: .7; }
+    70%, 100% { transform: scale(1.5); opacity: 0; }
+  }
+}
+
+@media (max-width: 900px) {
+  .links a:hover { transform: translateY(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .rv { opacity: 1; transform: none; transition: none; }
+  .links a, .text-link, .more, .card, .step, .close { transition: none; }
+}

@@ -87,3 +87,49 @@ document.addEventListener("click", (e) => {
     if (e.persisted) root.classList.remove("leaving");
   });
 })();
+
+// Micro-animation: reveal blocks with a soft stagger as they come into view.
+(() => {
+  const SELECTOR = [
+    ".hero > :not(.badge)",
+    ".problem > h2", ".numbered > li",
+    ".proof .skewed > *",
+    ".does .skewed > h2", ".dots > li",
+    ".back", ".intro .lede", ".section-title", ".note",
+    ".cards > li", ".steps > li", ".actions > div", ".story > .panel",
+    ".foot p",
+  ].join(",");
+
+  const els = [...document.querySelectorAll(SELECTOR)];
+  if (!els.length) return;
+
+  // Stagger index = position among matching siblings
+  const counts = new Map();
+  els.forEach((el) => {
+    const parent = el.parentElement;
+    const i = counts.get(parent) || 0;
+    counts.set(parent, i + 1);
+    el.style.setProperty("--i", i);
+    el.classList.add("rv");
+  });
+
+  const show = (el) => {
+    el.classList.add("in");
+    // once settled, drop the delay so later interactions are instant
+    setTimeout(() => { el.style.transitionDelay = "0s"; }, 1600);
+  };
+
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    els.forEach(show);
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) { show(entry.target); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -4% 0px" });
+
+  // wait a frame so the page-transition snapshot is taken before things animate in
+  requestAnimationFrame(() => els.forEach((el) => io.observe(el)));
+})();

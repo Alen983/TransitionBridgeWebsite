@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why it works — TransitionBridge</title>
+  <meta name="description" content="How TransitionBridge works, why case workers can trust it, and what its six agent actions do.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script>if (!window.CSSViewTransitionRule || location.protocol === "file:") document.documentElement.classList.add("no-vt"); document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="about.css">
+  <link rel="stylesheet" href="why.css">
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="person" viewBox="0 0 40 100" overflow="visible">
+        <circle cx="20" cy="9" r="7"/>
+        <path d="M11 19h18l4 40h-7l-1 37h-6l-1-30-1 30h-6l-1-37H7z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#how">Skip to content</a>
+
+  <div class="page">
+
+  <a class="stamp" href="index.html" aria-label="TransitionBridge — home">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="vertical">TransitionBridge</span>
+  </a>
+
+  <div class="content">
+  <svg class="figure" viewBox="0 0 40 100" aria-hidden="true" focusable="false">
+    <use href="#person" class="shadow" transform="translate(0 96) scale(1 -0.55) skewX(-55) translate(0 -96)"/>
+    <use href="#person" class="body"/>
+  </svg>
+
+  <a class="back" href="index.html">
+    <span class="back-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>
+    </span>
+    <span class="back-text">Back to home</span>
+  </a>
+
+  <main>
+
+    <section class="intro" aria-labelledby="intro-h">
+      <h1 id="intro-h" class="sr-only">Why TransitionBridge works</h1>
+      <p class="lede"><span class="cap">A</span> student’s move from school to adult services rarely fails in one place. It fails in the gaps between systems. TransitionBridge watches those gaps for the case worker, and leaves every decision to a person.</p>
+    </section>
+
+    <!-- 1 · How it works -->
+    <section class="block" id="how" aria-labelledby="how-h">
+      <h2 id="how-h" class="section-title">
+        <svg class="hand" viewBox="0 0 14 8" width="22" height="13" aria-hidden="true" focusable="false"><path d="M7 0h6v1H7zM1 1h12v2H1zM6 3h7v2H6zM7 5h6v2H7z" transform="translate(0 .5)"/></svg>
+        How it works
+      </h2>
+
+      <ol class="steps">
+        <li>
+          <span class="num">01</span>
+          <h3>Find</h3>
+          <p>The case worker asks about a student. The agent finds the record in Salesforce and reads it.</p>
+          <span class="action">Find Student</span>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <h3>Spot</h3>
+          <p>It checks for missing referrals, conflicting data and timeline risks, and pulls up the deadlines that are coming.</p>
+          <span class="action">Identify Transition Gaps · Query Deadlines</span>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <h3>Draft</h3>
+          <p>It drafts a program referral, and follow-up tasks for referrals that have stalled. Both wait for a person.</p>
+          <span class="action">Draft Referral · Follow-Up Nudge</span>
+        </li>
+        <li>
+          <span class="num">04</span>
+          <h3>Escalate</h3>
+          <p>Urgent cases and SSI or benefits questions go to the right queue, not into a guess.</p>
+          <span class="action">Escalate</span>
+        </li>
+        <li>
+          <span class="num">05</span>
+          <h3>Log</h3>
+          <p>Every action is written to an audit trail against the student.</p>
+          <span class="action">Agent Action Log</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 2 · Built to be trusted -->
+    <section class="block" id="trust" aria-labelledby="trust-h">
+      <h2 id="trust-h" class="section-title">
+        <svg class="hand" viewBox="0 0 14 8" width="22" height="13" aria-hidden="true" focusable="false"><path d="M7 0h6v1H7zM1 1h12v2H1zM6 3h7v2H6zM7 5h6v2H7z" transform="translate(0 .5)"/></svg>
+        Built to be trusted
+      </h2>
+
+      <ul class="cards three">
+
+        <li>
+          <button class="card" type="button" aria-haspopup="dialog">
+            <span class="thumb">
+              <svg viewBox="0 0 320 240" role="img" aria-label="Illustration: a drafted page waiting for a person to approve it">
+                <rect class="bg" width="320" height="240"/>
+                <rect x="84" y="36" width="152" height="176" fill="#f3ecdf" stroke="#111" stroke-width="3"/>
+                <g stroke="#111" stroke-width="3"><path d="M108 74h104M108 98h104M108 122h72M108 146h88"/></g>
+                <circle cx="222" cy="186" r="26" fill="#c8342b"/>
+                <path d="M210 186l9 9 15-18" fill="none" stroke="#f3ecdf" stroke-width="5" stroke-linecap="square"/>
+                <g fill="#111"><use href="#person" x="34" y="150" width="16" height="40"/></g>
+              </svg>
+            </span>
+            <span class="meta"><span class="tag">01 · Review</span><span class="year">Human in charge</span></span>
+            <span class="title">Nothing goes out unreviewed</span>
+            <span class="excerpt">Referrals are drafted for a person to review. The agent never auto-sends.</span>
+            <span class="open">Read <i aria-hidden="true">+</i></span>
+            <span class="full" hidden>
+              <p>TransitionBridge prepares the work and the case worker makes the call. A referral is created as a draft for human review, and it is never sent automatically.</p>
+              <p>That keeps people accountable for every decision about a student, while the agent takes care of the searching, checking and paperwork.</p>
+            </span>
+          </button>
+        </li>
+
+        <li>
+          <button class="card" type="button" aria-haspopup="dialog">
+            <span class="thumb">
+              <svg viewBox="0 0 320 240" role="img" aria-label="Illustration: a timeline of logged actions">
+                <rect class="bg" width="320" height="240"/>
+                <path d="M72 30v184" stroke="#111" stroke-width="3"/>
+                <g fill="#111"><circle cx="72" cy="52" r="9"/><circle cx="72" cy="104" r="9"/><circle cx="72" cy="156" r="9"/><circle cx="72" cy="208" r="9"/></g>
+                <circle cx="72" cy="156" r="9" fill="#c8342b"/>
+                <g fill="#111"><rect x="100" y="44" width="150" height="16"/><rect x="100" y="96" width="110" height="16"/><rect x="100" y="148" width="180" height="16"/><rect x="100" y="200" width="130" height="16"/></g>
+              </svg>
+            </span>
+            <span class="meta"><span class="tag">02 · Audit</span><span class="year">Every action</span></span>
+            <span class="title">A trail for everything</span>
+            <span class="excerpt">Every action the agent takes is logged against the student.</span>
+            <span class="open">Read <i aria-hidden="true">+</i></span>
+            <span class="full" hidden>
+              <p>Each automated action is written to an Agent Action Log record tied to the student, so a supervisor can see what was done and when.</p>
+              <p>Together with the escalation records, it gives schools and agencies an audit trail for every handoff.</p>
+            </span>
+          </button>
+        </li>
+
+        <li>
+          <button class="card" type="button" aria-haspopup="dialog">
+            <span class="thumb">
+              <svg viewBox="0 0 320 240" role="img" aria-label="Illustration: one path splitting towards two destinations">
+                <rect class="bg" width="320" height="240"/>
+                <circle cx="52" cy="120" r="22" fill="#111"/>
+                <path d="M74 120H130Q160 120 170 84H228M130 120Q160 120 170 156H228" fill="none" stroke="#111" stroke-width="4"/>
+                <rect x="228" y="60" width="60" height="48" fill="#111"/>
+                <rect x="228" y="132" width="60" height="48" fill="#c8342b"/>
+                <path d="M222 84l8-6v12zM222 156l8-6v12z" fill="#111"/>
+              </svg>
+            </span>
+            <span class="meta"><span class="tag">03 · Escalation</span><span class="year">Right queue</span></span>
+            <span class="title">Urgent cases reach the right person</span>
+            <span class="excerpt">SSI and benefits questions go to counselors, not to a guess.</span>
+            <span class="open">Read <i aria-hidden="true">+</i></span>
+            <span class="full" hidden>
+              <p>When a case is urgent or needs specialist knowledge, such as SSI and benefits questions, the agent creates an escalation and assigns it to the Benefits Counselors or Case Workers queue.</p>
+              <p>Resolution notes stay on the escalation record, so nothing gets lost between teams.</p>
+            </span>
+          </button>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- 3 · The six actions -->
+    <section class="block" id="actions" aria-labelledby="actions-h">
+      <h2 id="actions-h" class="section-title">
+        <svg class="hand" viewBox="0 0 14 8" width="22" height="13" aria-hidden="true" focusable="false"><path d="M7 0h6v1H7zM1 1h12v2H1zM6 3h7v2H6zM7 5h6v2H7z" transform="translate(0 .5)"/></svg>
+        The six agent actions
+      </h2>
+
+      <dl class="actions">
+        <div>
+          <dt><span>01</span>Find Student</dt>
+          <dd>Looks up a student record.<em>So nobody starts a conversation by hunting for a file.</em></dd>
+        </div>
+        <div>
+          <dt><span>02</span>Identify Transition Gaps</dt>
+          <dd>Flags missing referrals, data conflicts and timeline risks.<em>So problems show up before graduation, not after.</em></dd>
+        </div>
+        <div>
+          <dt><span>03</span>Query Deadlines</dt>
+          <dd>Retrieves the upcoming deadlines for a student.<em>So age-based and program dates are not kept in someone’s head.</em></dd>
+        </div>
+        <div>
+          <dt><span>04</span>Draft Referral</dt>
+          <dd>Creates a program enrollment referral for review.<em>So the paperwork is ready, and a person still decides.</em></dd>
+        </div>
+        <div>
+          <dt><span>05</span>Follow-Up Nudge</dt>
+          <dd>Generates follow-up tasks for stalled referrals.<em>So a referral that goes quiet gets chased.</em></dd>
+        </div>
+        <div>
+          <dt><span>06</span>Escalate</dt>
+          <dd>Creates an escalation and assigns it to the right queue.<em>So the hard cases reach someone who can solve them.</em></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- 4 · A day in the life -->
+    <section class="block" id="story" aria-labelledby="story-h">
+      <h2 id="story-h" class="section-title">
+        <svg class="hand" viewBox="0 0 14 8" width="22" height="13" aria-hidden="true" focusable="false"><path d="M7 0h6v1H7zM1 1h12v2H1zM6 3h7v2H6zM7 5h6v2H7z" transform="translate(0 .5)"/></svg>
+        A day in the life
+      </h2>
+      <p class="note">Illustrative example. Maya is not a real student.</p>
+
+      <div class="story">
+        <article class="panel before">
+          <h3>Without it</h3>
+          <p class="who">Maya has an IEP and graduates this spring.</p>
+          <ul>
+            <li>Her accommodations are in the school’s files.</li>
+            <li>Vocational rehabilitation, SSI and employers each use a different system.</li>
+            <li>Nobody notices the missing referral until a deadline has already passed.</li>
+          </ul>
+        </article>
+
+        <article class="panel after">
+          <h3>With TransitionBridge</h3>
+          <p class="who">Her case worker asks about Maya.</p>
+          <ul>
+            <li>The agent finds her record and flags that no vocational rehabilitation referral exists.</li>
+            <li>It shows the deadlines that are coming up.</li>
+            <li>It drafts the referral. The case worker reviews and sends it.</li>
+            <li>A question about SSI is escalated to a benefits counselor.</li>
+            <li>Every step is logged.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p>Equality Champion · Agentforce for Good Hackathon · Dreamforce 2026</p>
+  </footer>
+  </div><!-- /.content -->
+
+  <nav class="links" aria-label="Project links">
+    <a href="index.html">Home</a>
+    <a href="https://github.com/Alen983/TransitionBridge#readme">Documentation</a>
+    <a href="#demo" data-demo-link>Demo video</a>
+    <a href="about.html">About</a>
+    <a href="why.html" aria-current="page">Why</a>
+  </nav>
+
+  </div><!-- /.page -->
+
+  <!-- Enlarged view (same component as the About page) -->
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <button class="close" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <div class="viewer-img" id="viewer-img"></div>
+    <div class="viewer-body">
+      <p class="tag" id="viewer-tag"></p>
+      <h2 id="viewer-title"></h2>
+      <div class="viewer-text" id="viewer-text"></div>
+      <div class="pager">
+        <button type="button" class="step" id="prev" aria-label="Previous card">←</button>
+        <span id="count" aria-live="polite"></span>
+        <button type="button" class="step" id="next" aria-label="Next card">→</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="main.js"></script>
+  <script src="about.js"></script>
+</body>
+</html>

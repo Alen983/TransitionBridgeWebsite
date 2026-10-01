@@ -297,6 +297,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
   .viewer-img svg { min-height: 0; }
 }
 
+@media (max-width: 420px) {
+  .links { gap: .3rem; padding: 0 .15rem; }
+  .links a { letter-spacing: .06em; font-size: .56rem; padding: .5rem .15rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
